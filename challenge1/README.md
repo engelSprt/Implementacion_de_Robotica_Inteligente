@@ -39,7 +39,7 @@ La inclusión de un robot movil al trabajar con R.O.S. (Robot Operating System) 
 - Ros Master URI
 
 <p align="center">
-  <img src="https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/blob/main/Challenge%201/Challenge1_brainstorm.png" />
+  <img src="https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/blob/main/challenge1/Challenge1_brainstorm.png" />
 </p>
 
 ## Solución del problema
