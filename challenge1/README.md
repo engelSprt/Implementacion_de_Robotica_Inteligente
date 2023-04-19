@@ -54,6 +54,8 @@ Para la solución de este reto se cuentan con un archivo codificados en lenguaje
 
 **<p align="center"> Video de demostración con la explicación de la ejecución</p>**
 
+https://youtube.com/shorts/2Tvn88L7sOc?feature=share
+
 En este video se puede ver como el robot realiza un cuadrado como trayectoria y posteriormente se definen trayectorias de diferente inicio y fin.
 
 ## Conclusiones
