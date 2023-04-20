@@ -52,11 +52,27 @@ Para la solución de este reto se cuentan con un archivo codificados en lenguaje
 
 ## Resultados  
 
-**<p align="center"> Video de demostración con la explicación de la ejecución</p>**
+**<p align="center"> Videos de demostración en el robot</p>**
+
+**Trayectoria Cuadrada**
 
 https://youtube.com/shorts/2Tvn88L7sOc?feature=share
 
-En este video se puede ver como el robot realiza un cuadrado como trayectoria y posteriormente se definen trayectorias de diferente inicio y fin.
+**Trayectoria definida por segmentos**
+
+https://youtu.be/BI_4bEUJZ0A
+
+**<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
+
+**Trayectoria Cuadrada**
+
+https://youtu.be/MvmP8JJIncQ
+
+**Trayectoria definida por segmentos**
+
+https://youtu.be/QfGIKjejXoo
+
+En estos videos se puede ver como el robot realiza trayectorias tanto en físico y en el simulador.
 
 ## Conclusiones
 
