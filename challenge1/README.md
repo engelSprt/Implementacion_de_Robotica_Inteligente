@@ -43,11 +43,11 @@ La inclusión de un robot movil al trabajar con R.O.S. (Robot Operating System) 
 </p>
 
 ## Solución del problema
-Para la solución de este reto se cuentan con un archivo codificados en lenguaje Python, llamado: Square.py. Se comenzará por describir la funcionalidad en el siguiente apartado:
+Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: avanza.py y trayectoria2.py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
-### Squere.py
+### avanza.py
 
-
+### trayectoria2.py
 
 
 ## Resultados  
