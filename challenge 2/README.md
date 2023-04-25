@@ -19,19 +19,20 @@
 
 ## Resumen
 
-En este reto se refuerzan los conocimientos vistos durante la primera semana que consistía en hacer pruebas con la comunicación del robot que se estará utilizando durante la unidad de formación (puzzlebot). 
+En este reto se aplican los conocimientos vistos durante la semana, los cuales le dan continuidad al primer reto, pero esta vez mostrando el comportamiento de un control diseñado de lazo cerrado en robótica.
 
-Para manipular el robot desde otra computadora se ocupa el protocolo SSH y exportar el ROS master, de esta manera se puede programar los nodos desde nuestra computadora para lograr el objetivo de este primer challenge sin la necesidad de un monitor para la Jetson nano, la cual será la computadora integrada del robot.
-
-En adición la ejecución del robot en físico se hará al mismo tiempo en el simulador de ROS Gazebo, ya que es importante aprender a utilizarlo en caso de que no se tenga el robot para trabajar. Este simulador permite probar y depurar el código antes de implementarlo en un robot físico y de esta manera evitar errores.
+Para lograr la programación de este nuevo comportamiento en el robot se reutilizaron los conceptos requeridos en la implementación del control vistos previamente, tales como el cálculo del error generado, obtener la posición del robot, tipos de controladores, etc. 
 
 ## Objetivos
 
-Lo que se busca es crear un nodo para conducir el robot simulado en una ruta cuadrada de una longitud de 2 m por lado. Al mismo tiempo se usa el mismo nodo para mover el robot real en un cuadrado de 2 m de lado utilizando un controlador de lazo abierto y se selecciona la velocidad para terminar el recorrido, finalmente se trazarán segmentos de distancia que el robot rescorrerá tanto en físico y en el simulador.
+El objetivo consiste en utilizar un control PID para mover el robot a diferentes posiciones en el espacio planteado. Nuevamente se debe conducir el robot en una ruta cuadrada de una longitud de 2 m por lado, posteriormente se se debe crea un nodo generador de rutas, que publique la ruta actual y
+próximo objetivo una vez que el robot complete el objetivo actual.
+
+Estas trayectorias se implementan utilizando el Gazebo Puzzlebot Simulator y físicamente en el robot en tiempo real. Para esto se crearán los nodos y paquetes en ROS necesarios que se ecplicarán en la solución del problema.
 
 ## Introducción
 
-Como continuación del reto 1 para la movilidad del puzzlebot se investigaron y aplicaron los siguientes conceptos para su resolución.
+A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, se investigaron y aplicaron los siguientes conceptos para la resolución de este nuevo reto.
 - Control en lazo cerrado para un robot móvil
 - PID aplicado a un robot móvil diferencial
 - Cálculo del error
@@ -68,5 +69,4 @@ En estos videos se puede ver como el robot realiza la trayectoria tanto en físi
 
 ## Conclusiones
 
-Consideramos que esta primera práctica nos ayudó a terminar de comprender cómo funcionan las herramientas básicas de comunicación del Puzzlebot y ROS, las cuales son importantes e indispensables para desarrollar los futuros retos del curso que implementarán más factores, como la visión por computadora y el control de lazo cerrado. Pudimos resolver los erroes e impedimentos que tuvo el robot de las primeras pruebas en la semana, lo cual nos quitó un poco de tiempo en la resoluión de este reto, sin embargo, pudimos resolver el reto planteado, que en este caso fue la generación de trayectorias con el robot.
-
+Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PID ya que había funcionando previamente en los retos del bloque anterior. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final.
