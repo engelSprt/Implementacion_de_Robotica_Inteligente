@@ -69,4 +69,4 @@ En estos videos se puede ver como el robot realiza la trayectoria tanto en físi
 
 ## Conclusiones
 
-Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PID ya que había funcionando previamente en los retos del bloque anterior. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final.
+Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PID por su simplicidad y eficacia en este tipo de sistema, sin embargo, requirió ajustes en las constantes de cada acción del controlador para funcionar correctamente en esta aplicación. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final.
