@@ -39,7 +39,7 @@ A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, 
 - Robustez de un controlador
 
 <p align="center">
-  <img src=" " />
+  <img src="https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/blob/main/challenge%202/challenge2_brainstorm.png" />
 </p>
 
 ## Solución del problema
