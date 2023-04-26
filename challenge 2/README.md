@@ -30,6 +30,15 @@ próximo objetivo una vez que el robot complete el objetivo actual.
 
 Estas trayectorias se implementan utilizando el Gazebo Puzzlebot Simulator y físicamente en el robot en tiempo real. Para esto se crearán los nodos y paquetes en ROS necesarios que se ecplicarán en la solución del problema.
 
+**Parte 1:**
+
+![image](https://user-images.githubusercontent.com/93226207/234477100-c4fbc079-bf02-458c-84d6-82ce666356a5.png)
+
+**Parte 2:**
+
+![image](https://user-images.githubusercontent.com/93226207/234477041-0a6a4fa0-450d-422f-960e-61db9eed4a5b.png)
+
+
 ## Introducción
 
 A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, se investigaron y aplicaron los siguientes conceptos para la resolución de este nuevo reto.
