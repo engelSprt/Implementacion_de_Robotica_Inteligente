@@ -54,15 +54,10 @@ Para la solución de este reto se cuentan con tres archivos codificados en lengu
 
 **<p align="center"> Videos de demostración en el robot</p>**
 
-**Trayectoria Cuadrada**
-
-
+https://youtube.com/shorts/GYwQgxYg7TQ?feature=share
 
 
 **<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
-
-**Trayectoria Cuadrada**
-
 
 
 En estos videos se puede ver como el robot realiza la trayectoria tanto en físico y en el simulador.
