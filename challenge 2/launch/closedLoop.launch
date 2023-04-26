@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Load operation parameters from YAML file -->
+    <rosparam command="load" file="$(find prueba_reto)/config/operation_params.yaml"/>
+
+    <!-- Launch position_estimation.py -->
+    <node name="position_estimation" pkg="prueba_reto" type="position_estimation.py"/>
+
+    <!-- Launch path_generator.py -->
+    <node name="path_gen_cl" pkg="prueba_reto" type="path_gen_cl.py"/>
+    
+</launch>
