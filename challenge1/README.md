@@ -45,7 +45,7 @@ La inclusión de un robot movil al trabajar con R.O.S. (Robot Operating System) 
 ## Solución del problema
 Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: avanza.py y trayectoria2.py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
-### avanza.py
+### cuadrado.py
 Este nodo controla al puzzlebot para que se mueva en un patrón de cuadrado de 2mts por 2mts. El código se ejecuta en un bucle continuo hasta que complete su trayectoria o el usuario lo detenga. Durante el bucle, el nodo utiliza información de velocidad de rueda proporcionada por dos suscriptores /wr y /wl, para calcular la distancia y el ángulo recorridos por el puzzlebot. Luego, el nodo utiliza esta información para determinar la dirección y la velocidad de movimiento del robot. Finalmente, el nodo publica los comandos de movimiento a través de un publicador de ROS al robot.
 
 La clase Square define la funcionalidad del nodo. La función __init__ inicializa el nodo y los objetos de publicación y suscripción de ROS. Los valores iniciales para las velocidades de las ruedas son cero. También se establece una tasa de publicación de 20 Hz.
