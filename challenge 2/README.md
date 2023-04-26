@@ -378,12 +378,14 @@ if __name__ == '__main__':
 
 https://youtube.com/shorts/GYwQgxYg7TQ?feature=share
 
+En este video se puede observar que el robot no se comportó de la manera deseada, esto como tal no fue causado por el programa, si no por un error en la conexión con la tarjeta, debido a esto ya no se pudieron hacer más pruebas porque no fue posible reanudar la comunicación entre la computadora externa y el puzzlebot. Se intentará dar solució a dicho inconveniente para que no se presnete en ocasiones futuras
 
 **<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
 
+https://youtu.be/XyWDXy_KEPI
 
-En estos videos se puede ver como el robot realiza la trayectoria tanto en físico y en el simulador.
+En este video se puede ver como el robot realiza la trayectoria cuadrada en el simulador, sin embargo vemos que el comportamiento está un poco alejado de lo solicitado, para esto se considera que posiblemente puede existir un inconveniente entre el tiempo de muestreo empleado o la sintonización de las variables utilizadas para el controlador PI.
 
 ## Conclusiones
 
-Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PID por su simplicidad y eficacia en este tipo de sistema, sin embargo, requirió ajustes en las constantes de cada acción del controlador para funcionar correctamente en esta aplicación. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final.
+Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PI por su simplicidad y eficacia en este tipo de sistema, sin embargo, requirió ajustes en las constantes de cada acción del controlador para funcionar correctamente en esta aplicación. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final. Si bien el robot no se comportó de la mejor manera se seguirá actualizando el código de manera externa para poder obtener un resultado satisfactorio y preciso.
