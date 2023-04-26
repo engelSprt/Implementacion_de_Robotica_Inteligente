@@ -150,9 +150,11 @@ if __name__=='__main__':
 
 `````
 
-### controller.py
+### position estimation.py
 
-`````python
+Este código integra el controlador PI, además de tener otras funciones descritas con más detalle dentro de los comentarios. Primeramente se cargan las librerías a utilizar, así como los mensajes cutomizados correspondientes. Seguido de esto se declaran las variables a utilizar y las constantes del controlador. Luego de esto se inicializan tanto los suscriptores como los publicadores. Dentro de la parte más robusta del código encontramos al controlador PI tano para la velocdad angular como para la velocidad lineal, además se tienen condicionales que ayudarán al movimiento del robot, si alguna de las condicionales se cumple el controlador entrar en acción para tratar de corregir la trayectoria. Por último se publica la velocidad, los errores y la posición del robot.
+
+````python
 #!/usr/bin/env python
 import rospy
 import numpy as np
@@ -378,7 +380,7 @@ if __name__ == '__main__':
 
 https://youtube.com/shorts/GYwQgxYg7TQ?feature=share
 
-En este video se puede observar que el robot no se comportó de la manera deseada, esto como tal no fue causado por el programa, si no por un error en la conexión con la tarjeta, debido a esto ya no se pudieron hacer más pruebas porque no fue posible reanudar la comunicación entre la computadora externa y el puzzlebot. Se intentará dar solució a dicho inconveniente para que no se presnete en ocasiones futuras
+En este video se puede observar que el robot no se comportó de la manera deseada, esto como tal no fue causado por el programa, si no por un error en la conexión con la tarjeta, debido a esto ya no se pudieron hacer más pruebas porque no fue posible reanudar la comunicación entre la computadora externa y el puzzlebot. Se intentará dar solución a dicho inconveniente para que no se presente en ocasiones futuras.
 
 **<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
 
