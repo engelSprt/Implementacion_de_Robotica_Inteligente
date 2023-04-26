@@ -29,6 +29,10 @@ En adición la ejecución del robot en físico se hará al mismo tiempo en el si
 
 Lo que se busca es crear un nodo para conducir el robot simulado en una ruta cuadrada de una longitud de 2 m por lado. Al mismo tiempo se usa el mismo nodo para mover el robot real en un cuadrado de 2 m de lado utilizando un controlador de lazo abierto y se selecciona la velocidad para terminar el recorrido, finalmente se trazarán segmentos de distancia que el robot rescorrerá tanto en físico y en el simulador.
 
+**Trayectoria 1**
+![image](https://user-images.githubusercontent.com/93226207/234476444-65daa0d9-1407-4499-a098-584d89ef6d62.png)
+
+
 ## Introducción
 
 La inclusión de un robot movil al trabajar con R.O.S. (Robot Operating System) require la manipulación e investigación de diferentes herramientas nuevas para la comunicación entre la jetson nano y otra computadora externa. Las herramientas empleadas en este primer reto son las siguientes.
