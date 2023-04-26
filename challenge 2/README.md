@@ -25,7 +25,7 @@ Para lograr la programación de este nuevo comportamiento en el robot se reutili
 
 ## Objetivos
 
-El objetivo consiste en utilizar un control PID para mover el robot a diferentes posiciones en el espacio planteado. Nuevamente se debe conducir el robot en una ruta cuadrada de una longitud de 2 m por lado, posteriormente se se debe crea un nodo generador de rutas, que publique la ruta actual y
+El objetivo consiste en utilizar un control PI para mover el robot a diferentes posiciones en el espacio planteado. Nuevamente se debe conducir el robot en una ruta cuadrada de una longitud de 2 m por lado, posteriormente se se debe crea un nodo generador de rutas, que publique la ruta actual y
 próximo objetivo una vez que el robot complete el objetivo actual.
 
 Estas trayectorias se implementan utilizando el Gazebo Puzzlebot Simulator y físicamente en el robot en tiempo real. Para esto se crearán los nodos y paquetes en ROS necesarios que se ecplicarán en la solución del problema.
@@ -43,7 +43,7 @@ Estas trayectorias se implementan utilizando el Gazebo Puzzlebot Simulator y fí
 
 A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, se investigaron y aplicaron los siguientes conceptos para la resolución de este nuevo reto.
 - Control en lazo cerrado para un robot móvil
-- PID aplicado a un robot móvil diferencial
+- PI aplicado a un robot móvil diferencial
 - Cálculo del error
 - Robustez de un controlador
 
@@ -52,9 +52,11 @@ A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, 
 </p>
 
 ## Solución del problema
-Para la solución de este reto se cuentan con tres archivos codificados en lenguaje Python, llamados: path_generator.py, controller.py y .py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
+Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: path_gen_cl que es el path generator y position_estimation.py que funge como controlador. Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
-### path_generator.py
+### path_gen_cl.py
+
+Este código genera la trayectoria a seguir por el robot, esto se logra mediante mensajes customizados. Se comienza por cargar cada una de las librerías y los mensajes customizados correspondientes. Posteriormente se generan funciones de callback que nos serán útiles para conocer los valores de los errores, y con esto poder tomar decisiones sobre el tiempo de muestreo. Seguido de esto tenemos la creación de los publishers y suscribers correspondientes 
 
 `````python
 #!/usr/bin/env python
