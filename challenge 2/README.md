@@ -150,6 +150,16 @@ if __name__=='__main__':
 
 `````
 
+### Ajuste del Controlador
+
+El primer paso fue definir un conjunto de valores iniciales para los dos parámetros del controlador PI: la ganancia proporcional (Kp) y la ganancia integral (Ki). Para hacer esto, se utilizaron valores comunes de referencia para cada uno de los parámetros, pero se ajustaron según el comportamiento que se iba observando en el robot.
+
+Luego, se inició el proceso de ajuste manual de los parámetros. Para hacer esto, se aumentó el valor de la ganancia proporcional (Kp) hasta que se observó una oscilación en el sistema. Luego, se disminuyó ligeramente el valor de Kp hasta que la oscilación mejoró. Este valor se registró como el valor inicial de Kp.
+
+Finalmente, se ajustó el valor de la ganancia integral (Ki) para mejorar la precisión del sistema en estado estable. Se aumentó Ki hasta que se observó una disminución significativa en el error en estado estable, y luego se disminuyó ligeramente Ki hasta que el error en estado estable se mantuvo constante.
+
+Este proceso se repitió varias veces, con pequeños ajustes en cada iteración, sin embargo a pesar de emplear el controlador y de haber realizado el tuneo de forma muy minuciosa el resultado obtenido como respuesta no fue el deseado, ya que el robot no pudo seguir las trayectorias dadas con precisión. 
+
 ### position estimation.py
 
 Este código integra el controlador PI, además de tener otras funciones descritas con más detalle dentro de los comentarios. Primeramente se cargan las librerías a utilizar, así como los mensajes cutomizados correspondientes. Seguido de esto se declaran las variables a utilizar y las constantes del controlador. Luego de esto se inicializan tanto los suscriptores como los publicadores. Dentro de la parte más robusta del código encontramos al controlador PI tano para la velocdad angular como para la velocidad lineal, además se tienen condicionales que ayudarán al movimiento del robot, si alguna de las condicionales se cumple el controlador entrar en acción para tratar de corregir la trayectoria. Por último se publica la velocidad, los errores y la posición del robot.
