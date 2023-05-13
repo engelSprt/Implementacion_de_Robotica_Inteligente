@@ -1,0 +1,2 @@
+float64 camino_x
+float64 camino_y
