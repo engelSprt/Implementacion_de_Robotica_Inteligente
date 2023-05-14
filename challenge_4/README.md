@@ -34,6 +34,13 @@ De tal manera mediante el desarrollo de algoritmos de vision computacional el ro
 
 ## Introducción 
 
+Uno de los temas que actualmente estan combrando bastante relevancia en el mundo de la tecnologia, es la navegacion autonoma. 
+Por ello en este mini reto se abordan conceptos que son fundamentales en la misma, de tal manera que se puedan entender los principios basicos y la robustez con que estos deben ser programados a fin de que el robot cumpla su objetivo de la manera mas adecuada y correcta posible. Para ello se abordan puntos importantes como:
+* Procesamiento de imágenes en una tarjeta embebida 
+* Interconexión entre jetson y la cámara 
+* Detección de contornos o formas en una imagen
+* Detección de colores 
+* Robustez en sistemas de procesamiento de imágenes
 
 ![reto 4 mapa mental](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/100887194/b5158b3e-6e16-4377-a5c1-fe039490133e)
 
