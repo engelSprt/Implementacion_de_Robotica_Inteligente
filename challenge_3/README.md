@@ -1,4 +1,4 @@
-# CHALLENGE 4
+# CHALLENGE 3
 
 <p align="center">
   <img src="https://github.com/engelSprt/Retos_Manchester_Robotics/blob/main/Challenge%201/Imagenes/tecnologico-de-monterrey-blue.png" />
@@ -8,7 +8,7 @@
 <p align="center">TE3002B.502.</p>
 <p align="center">Implementación de robótica inteligente (Gpo 101)</p>
 <p align="center">Semestre: febrero - junio 2023.</p>
-<p align="center">Challenge 4</p>
+<p align="center">Challenge 3</p>
 <p align="center">Integrantes:</p>
 <p align="center">Fredy Yahir Canseco Santos     A01735589</p>
 <p align="center">José Ángel Ramírez Ramírez    A01735529</p>
