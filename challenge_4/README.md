@@ -18,9 +18,28 @@
 
 ## Resumen
 
+
 ## Objetivos
+Considerando los conceptos vistos durante la semana 4 del curso, se pretende demostrar el comportamiento de los sistemas de vision computacional aplicado en los robots moviles. 
+
+Particularmente en este mini challenge se busca usar los conocimientos adquiridos en las semanas previas del curso y añadir una capa de toma de decisiones. Esta consiste en añadir un semaforo entre cada punto de una ruta a seguir por el robot como se muestra en la siguiente imagen.
+
+![imagen1](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/100887194/07eb9315-d4d6-4742-8f01-2dfb72fe6270)
+
+De tal manera mediante el desarrollo de algoritmos de vision computacional el robot sea capaz de detectar los distintos tipos de color de cada semaforo y que se comporte de la siguiente manera dependiendo el color:
+
+- Rojo: Detenerse completamente hasta detectar el color verde.
+- Amarillo: Avanzar lentamente hasta detectar la luz roja para detenerse. 
+- Verde: Continuar con su ruta. 
+
+## Introducción 
+
+
+![reto 4 mapa mental](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/100887194/b5158b3e-6e16-4377-a5c1-fe039490133e)
+
 
 ## Solucion
+
 
 ## Resultados
 
