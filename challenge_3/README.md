@@ -18,6 +18,7 @@
 
 ## Resumen
 Este mini reto es una continuación de los mini retos 1 y 2. Para este, los puntos más importantes a tomar en cuenta son el control en lazo cerrado y algoritmos de visión. 
+En primer lugar, para el controlador en lazo cerrado  
 
 
 ## Objetivos
