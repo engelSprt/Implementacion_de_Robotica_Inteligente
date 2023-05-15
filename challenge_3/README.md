@@ -539,7 +539,7 @@ Este proceso se repitió varias veces, con pequeños ajustes en cada iteración.
 
 ### Video demostrativo
 
-[![texto alternativo](https://img.youtube.com/vi/ID_DEL_VIDEO/0.jpg)](https://www.youtube.com/watch?v=RDOThKTAVrUMQ)
+[![Video](https://img.youtube.com/vi/pidW3WI3QMc/0.jpg)](https://www.youtube.com/watch?v=pidW3WI3QMc)
 
 
 ## Conclusiones
