@@ -20,6 +20,7 @@
 Este mini reto es una continuación de los mini retos 1 y 2. Para este, los puntos más importantes a tomar en cuenta son el control en lazo cerrado y algoritmos de visión. 
 
 En primer lugar, para el controlador en lazo cerrado se usó un controlador PID debido a la adaptabilidad que tiene en el sistema que estamos controlando, además de la robustez que tiene para manejar perturbaciones sin que su rendimiento se vea tan afectado.
+
 Por otro lado, para el sistema de visión, se definió un rango para cada uno de los colores, se usó un filtro "Gaussian Blur" con un kernel de 5x5 para filtrar el ruido de las imágenes, y para agregar robustez se usaron conceptos de morfología con el propósito de que hubiera una visión más detallada de cada color.
 
 
