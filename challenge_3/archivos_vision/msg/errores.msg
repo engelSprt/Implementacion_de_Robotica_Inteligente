@@ -1,2 +1,0 @@
-float64 error_distancia
-float64 error_angular
