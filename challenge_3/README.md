@@ -170,9 +170,367 @@ if __name__ == '__main__':
     cv2.destroyAllWindows()
 `````
 
-### controller.py
 
 ### path_generator.py
+Este código genera la trayectoria a seguir por el robot, esto se logra mediante mensajes customizados. Se comienza por cargar cada una de las librerías y los mensajes customizados correspondientes. Posteriormente se generan funciones de callback que nos serán útiles para conocer los valores de los errores, y con esto poder tomar decisiones sobre el tiempo de muestreo. Seguido de esto tenemos la creación de los publishers y suscribers correspondientes
+
+
+`````python
+
+#!/usr/bin/env python
+import rospy
+from std_msgs.msg import Float32
+from mini_challenge_3.msg import errores
+from geometry_msgs.msg import Pose2D
+import numpy as np
+
+class path_generator_class:
+    def __init__(self):
+      self.current_time = 0.0
+      self.previous_time = 0.0
+      self.first = True
+      self.i = 0
+      self.paso = 0
+      #sample_time = 0.1
+      #tiempo_muestreo = 0.1
+      self.input_path_x = 0
+      self.input_path_y = 0
+
+      self.wl = 0.0
+      self.wr = 0.0
+
+      self.r = 0.05
+      self.l = 0.19
+      self.first = True
+
+      self.pose = Pose2D()
+      self.pose.x = 0.0
+      self.pose.y = 0.0
+      self.pose.theta = 0.0
+
+      self.el_errores = errores()
+      self.el_errores.error_distancia = 0.0
+      self.el_errores.error_angular = 0.0
+
+      rospy.init_node("Path_generator")
+      self.rate = rospy.Rate(20)
+          #pub = rospy.Publisher("/camino", camino, queue_size=10)
+      
+      rospy.Subscriber("/wr", Float32, self.wr_callback)
+      rospy.Subscriber("/wl", Float32, self.wl_callback)
+      #self.input_path_x = rospy.get_param("/path_x", [2.0,2.0,0.0,0.0])
+      #self.input_path_y = rospy.get_param("/path_y", [0.0,2.0,2.0,0.0])
+      self.input_path_x = rospy.get_param("/path_x")
+      self.input_path_y = rospy.get_param("/path_y")
+      self.el_errores_pub = rospy.Publisher("/Err", errores, queue_size=1)
+      self.pose_publicador = rospy.Publisher("/pose",Pose2D,queue_size=1)
+      print("The Controller is Running")  
+
+      self.rate = rospy.Rate(20)
+      #self.loop_rate = rospy.Rate(20)
+      #rospy.on_shutdown()
+
+    def wr_callback(self, msg):
+        self.wr = msg.data
+    
+    def wl_callback(self, msg):
+        self.wl = msg.data
+
+    def wrapTheta(self,theta):
+        result=np.fmod((theta+ np.pi),(2*np.pi))
+        if(result<0):
+            result += 2 * np.pi
+        return result - np.pi
+
+    def run(self):
+        while not rospy.is_shutdown():
+            # Compute time since last main loop
+            if self.first:
+                self.current_time = rospy.get_time() 
+                self.previous_time = rospy.get_time()
+                self.first = False
+                #for i in range (0,len(input_path_x)):
+                #  path_x.append([path_x[i]])
+                #  path_y.append([path_y[i]])
+                # self.previous_time = self.current_time
+
+            else:
+                self.current_time = rospy.get_time()
+                dt = (self.current_time - self.previous_time)
+                self.previous_time = self.current_time
+    
+                
+                self.pose.theta += self.wrapTheta(dt * self.r * ((self.wr - self.wl) / self.l))
+                self.pose.x += dt * self.r * ((self.wr + self.wl) / 2) * np.cos(self.pose.theta)
+                self.pose.y += dt * self.r * ((self.wr + self.wl) / 2) * np.sin(self.pose.theta)
+                
+                ###############################################################################
+                
+                self.el_errores.error_angular = self.wrapTheta(np.arctan2(self.input_path_y[self.paso]-self.pose.y, self.input_path_x[self.paso]-self.pose.x) - self.pose.theta)
+                self.el_errores.error_distancia = np.sqrt(np.square(self.input_path_x[self.paso]-self.pose.x) + np.square(self.input_path_y[self.paso]-self.pose.y))
+               
+                if self.el_errores.error_distancia < 0.1:
+                    self.el_errores.error_distancia = 0
+                if self.el_errores.error_angular < 0.1 and self.el_errores.error_angular > -0.1:
+                    self.el_errores.error_angular = 0
+                if self.el_errores.error_angular == 0 and self.el_errores.error_distancia == 0 and self.paso < len(self.input_path_x):
+                    self.paso += 1
+                    print("Se envia otra coordenada")
+                if self.i == len(self.input_path_x):
+                    print("Llegamos al limite de puntos") 
+                    self.el_errores.error_distancia = 0
+                    self.el_errores.error_angular = 0
+                self.pose_publicador.publish(self.pose)
+                self.el_errores_pub.publish(self.el_errores)
+                self.rate.sleep()
+
+if __name__ == "__main__":
+    Path = path_generator_class()
+    try:
+        Path.run()
+    except rospy.ROSInterruptException:
+        None
+
+`````
+
+### controller.py
+`````python
+#!/usr/bin/env python
+
+import rospy
+from std_msgs.msg import String
+from geometry_msgs.msg import Twist
+import numpy as np
+from geometry_msgs.msg import Pose2D
+from mini_challenge_3.msg import errores
+
+class controller:
+    def __init__(self):
+        
+        self.tiempo_muestreo = 0.1
+
+        self.r = 0.05
+        self.l = 0.19
+
+        self.first = True
+
+        self.estado = " "
+        #self.estado_2 = "Ejecuta"
+        
+
+        # Variables para el almacenamiento de las posiciones del robot
+        self.pose = Pose2D()
+        self.pose.x = 0.0
+        self.pose.y = 0.0
+        self.pose.theta = 0.0
+
+        #Variables para alamcenar los tiempos
+        self.current_time = 0.0
+        self.previous_time = 0.0
+        #self.el_errores = errores()
+        #self.el_errores.error_distancia = 0.0
+        #self.el_errores.error_angular = 0.0
+
+        self.error1 = 0.0
+        self.error2 = 0.0
+
+
+        # Initialize Twist message for robot speed
+        self.speed = Twist()
+        self.speed.linear.x = 0.0
+        self.speed.linear.y = 0.0
+        self.speed.linear.z = 0.0
+        self.speed.angular.x = 0.0
+        self.speed.angular.y = 0.0
+        self.speed.angular.z = 0.0
+
+        #self.pwm = 0
+
+
+        # Initialize PID controller gains and integrals
+        self.kp_angular = 0.5
+        self.ki_angular = 0.1
+        self.kd_angular = 0.1
+
+        self.kp_linear = 0.35
+        self.ki_linear = 0.0
+        self.kd_linear = 0.0
+
+        #Variables para cada constante del PID
+        self.P_linear = 0.0
+        self.I_linear = 0.0
+        self.D_linear = 0.0
+
+        self.P_angular = 0.0
+        self.I_angular = 0.0
+        self.D_angular = 0.0
+
+        #Respuesta del controlador PID
+        self.respuesta_linear = 0.0
+        self.respuesta_angular = 0.0
+
+        #Acum del error
+        self.integral_angular = 0.0
+        self.integral_linear = 0.0
+
+
+   
+
+        #Inicializar nodos
+        rospy.init_node("controller")
+        #rospy.Subscriber("/wr", Float32, self.wr_callback)
+        #rospy.Subscriber("/wl", Float32, self.wl_callback)
+        #rospy.Subscriber("/camino", camino, self.camino_callback)
+        rospy.Subscriber("/traffic_light", String, self.vision_callback)   
+        
+        rospy.Subscriber("/Err", errores, self.callback_error)
+        
+        self.vel_pub = rospy.Publisher('/cmd_vel', Twist, queue_size = 10)
+
+        #self.semaforo_estado = rospy.Publisher('/cmd_vel', UInt8, queue_size = 10)
+
+        self.rate = rospy.Rate(20)
+
+        # Callbacks para velocidades de las ruedas
+    def wr_callback(self,msg):
+        self.wr = msg.data
+
+    def wl_callback(self,msg):
+        self.wl = msg.data
+
+    def vision_callback(self,data):
+        if data.data == "Stop":
+            self.estado = "Rojo"
+        elif data.data == "Slow_down":
+            self.estado = "Amarillo"
+        elif data.data == "Go":
+            self.estado = "Verde"
+        else:
+            return
+    
+    def callback_error(self,msg):
+        self.error1 = msg.error_distancia
+        self.error2 = msg.error_angular
+        
+    def stop(self):
+        print("Stopping")
+        self.speed.linear.x = 0
+        self.speed.linear.y = 0
+        self.speed.linear.z = 0
+        self.speed.angular.x = 0
+        self.speed.angular.y = 0
+        self.speed.angular.z = 0
+
+    #def wrapTheta(self,theta):
+    #    result=np.fmod((theta+ np.pi),(2*np.pi))
+    #    if(result<0):
+    #        result += 2 * np.pi
+    #    return result - np.pi
+
+    def run(self):
+        while not rospy.is_shutdown():
+            if self.first:
+                self.current_time = rospy.get_time() 
+                self.previous_time = rospy.get_time()
+                self.first = False
+            else:
+                self.current_time = rospy.get_time() 
+                dt = (self.current_time - self.previous_time)
+                self.previous_time = self.current_time
+
+                    #self.semaforo_estado.publish(self.pwm)
+                    #if dt >= self.tiempo_muestreo:
+                    
+                    #dt = 0.00000000001
+                    ##################################################################################
+                    
+                #Controlador_lineal
+                self.prev_Error_linear = 0.0
+                # P_linear
+                self.P_linear = self.kp_linear * self.error1
+
+                # I_linear
+                self.I_linear += self.error1 * dt
+
+                # D_linear
+                self.D_linear = ((self.error1 - self.prev_Error_linear)/(dt+0.000000001))
+
+                self.prev_Error_linear = self.error1
+
+                self.respuesta_linear = self.P_linear + self.I_linear * self.ki_linear + self.kd_linear * self.D_linear #Corregir
+                    ##################################################################################
+
+                #Controlador_angular
+                self.prev_Error_angular = 0.0
+                # P_angular
+                self.P_angular = self.kp_angular * self.error2
+
+                # I_angular
+                self.I_angular += self.error2 * dt
+
+                # D_angular
+                self.D_angular = ((self.error2 - self.prev_Error_angular)/(dt+0.0000001))
+
+                self.prev_Error_angular = self.error2
+
+                self.respuesta_angular = self.P_angular + self.I_angular * self.ki_linear + self.kd_angular * self.D_angular                
+                
+                ##########################self.current_time = rospy.get_time()########################################################
+                
+                if self.error1 == 0 or self.error2 == 0:
+                    #Publicar las posiciones
+                    #self.err_pub.publish(self.el_errores)
+                    self.speed.linear.x = 0
+                    self.speed.angular.z = 0
+
+            # Semaforo en ROJO -> Se detiene el robot.
+
+                if self.estado == "Rojo":
+                    self.speed.linear.x = 0
+                    self.speed.angular.z = 0
+                    #print("Si estoy publicando las velocidades controladas \n")
+                    #self.vel_pub.publish(self.speed)                   
+
+            # Semaforo en Verde -> Avanza el robot.
+
+                elif self.estado == "Verde":
+
+                    self.speed.linear.x = self.respuesta_linear
+                    self.speed.angular.z = self.respuesta_angular
+                    #print("Si estoy publicando las velocidades controladas \n")
+                
+                elif self.estado == "Amarillo":
+                    self.speed.linear.x -= 0.1
+                    self.speed.angular.z -= 0.1
+                    if self.speed.linear.x <= 0 or self.speed.angular.z <= 0:
+                    # si la velocidad es cero, detener el robot
+                        self.stop()
+                
+                else:
+                    self.speed.linear.x = self.respuesta_linear
+                    self.speed.angular.z = self.respuesta_angular
+                    #print("NO_hago_nada")
+
+                self.vel_pub.publish(self.speed)
+                print("Si estoy publicando las velocidades controladas \n")
+                self.rate.sleep()
+                
+if __name__ == "__main__":
+    Controller = controller()
+    try:
+        Controller.run()
+    except rospy.ROSInterruptException:
+        None 
+
+`````
+### Ajuste del controlador
+El primer paso fue definir un conjunto de valores iniciales para los dos parámetros del controlador PI: la ganancia proporcional (Kp) y la ganancia integral (Ki). Para hacer esto, se utilizaron valores comunes de referencia para cada uno de los parámetros, pero se ajustaron según el comportamiento que se iba observando en el robot.
+
+Luego, se inició el proceso de ajuste manual de los parámetros. Para hacer esto, se aumentó el valor de la ganancia proporcional (Kp) hasta que se observó una oscilación en el sistema. Luego, se disminuyó ligeramente el valor de Kp hasta que la oscilación mejoró. Este valor se registró como el valor inicial de Kp.
+
+Finalmente, se ajustó el valor de la ganancia integral (Ki) para mejorar la precisión del sistema en estado estable. Se aumentó Ki hasta que se observó una disminución significativa en el error en estado estable, y luego se disminuyó ligeramente Ki hasta que el error en estado estable se mantuvo constante.
+
+Este proceso se repitió varias veces, con pequeños ajustes en cada iteración, sin embargo a pesar de emplear el controlador y de haber realizado el tuneo de forma muy minuciosa el resultado obtenido como respuesta no fue el deseado, ya que el robot no pudo seguir las trayectorias dadas con precisión.
 
 ## Resultados
 
