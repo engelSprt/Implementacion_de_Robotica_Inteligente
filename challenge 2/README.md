@@ -25,16 +25,25 @@ Para lograr la programación de este nuevo comportamiento en el robot se reutili
 
 ## Objetivos
 
-El objetivo consiste en utilizar un control PID para mover el robot a diferentes posiciones en el espacio planteado. Nuevamente se debe conducir el robot en una ruta cuadrada de una longitud de 2 m por lado, posteriormente se se debe crea un nodo generador de rutas, que publique la ruta actual y
+El objetivo consiste en utilizar un control PI para mover el robot a diferentes posiciones en el espacio planteado. Nuevamente se debe conducir el robot en una ruta cuadrada de una longitud de 2 m por lado, posteriormente se se debe crea un nodo generador de rutas, que publique la ruta actual y
 próximo objetivo una vez que el robot complete el objetivo actual.
 
 Estas trayectorias se implementan utilizando el Gazebo Puzzlebot Simulator y físicamente en el robot en tiempo real. Para esto se crearán los nodos y paquetes en ROS necesarios que se ecplicarán en la solución del problema.
+
+**Parte 1:**
+
+![image](https://user-images.githubusercontent.com/93226207/234477100-c4fbc079-bf02-458c-84d6-82ce666356a5.png)
+
+**Parte 2:**
+
+![image](https://user-images.githubusercontent.com/93226207/234477041-0a6a4fa0-450d-422f-960e-61db9eed4a5b.png)
+
 
 ## Introducción
 
 A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, se investigaron y aplicaron los siguientes conceptos para la resolución de este nuevo reto.
 - Control en lazo cerrado para un robot móvil
-- PID aplicado a un robot móvil diferencial
+- PI aplicado a un robot móvil diferencial
 - Cálculo del error
 - Robustez de un controlador
 
@@ -43,9 +52,11 @@ A partir del reto 1 que involucraba la movilidad del puzzlebot en lazo abierto, 
 </p>
 
 ## Solución del problema
-Para la solución de este reto se cuentan con tres archivos codificados en lenguaje Python, llamados: path_generator.py, controller.py y .py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
+Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: path_gen_cl que es el path generator y position_estimation.py que funge como controlador. Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
-### path_generator.py
+### path_gen_cl.py
+
+Este código genera la trayectoria a seguir por el robot, esto se logra mediante mensajes customizados. Se comienza por cargar cada una de las librerías y los mensajes customizados correspondientes. Posteriormente se generan funciones de callback que nos serán útiles para conocer los valores de los errores, y con esto poder tomar decisiones sobre el tiempo de muestreo. Seguido de esto tenemos la creación de los publishers y suscribers correspondientes 
 
 `````python
 #!/usr/bin/env python
@@ -139,9 +150,21 @@ if __name__=='__main__':
 
 `````
 
-### controller.py
+### Ajuste del Controlador
 
-`````python
+El primer paso fue definir un conjunto de valores iniciales para los dos parámetros del controlador PI: la ganancia proporcional (Kp) y la ganancia integral (Ki). Para hacer esto, se utilizaron valores comunes de referencia para cada uno de los parámetros, pero se ajustaron según el comportamiento que se iba observando en el robot.
+
+Luego, se inició el proceso de ajuste manual de los parámetros. Para hacer esto, se aumentó el valor de la ganancia proporcional (Kp) hasta que se observó una oscilación en el sistema. Luego, se disminuyó ligeramente el valor de Kp hasta que la oscilación mejoró. Este valor se registró como el valor inicial de Kp.
+
+Finalmente, se ajustó el valor de la ganancia integral (Ki) para mejorar la precisión del sistema en estado estable. Se aumentó Ki hasta que se observó una disminución significativa en el error en estado estable, y luego se disminuyó ligeramente Ki hasta que el error en estado estable se mantuvo constante.
+
+Este proceso se repitió varias veces, con pequeños ajustes en cada iteración, sin embargo a pesar de emplear el controlador y de haber realizado el tuneo de forma muy minuciosa el resultado obtenido como respuesta no fue el deseado, ya que el robot no pudo seguir las trayectorias dadas con precisión. 
+
+### position estimation.py
+
+Este código integra el controlador PI, además de tener otras funciones descritas con más detalle dentro de los comentarios. Primeramente se cargan las librerías a utilizar, así como los mensajes cutomizados correspondientes. Seguido de esto se declaran las variables a utilizar y las constantes del controlador. Luego de esto se inicializan tanto los suscriptores como los publicadores. Dentro de la parte más robusta del código encontramos al controlador PI tano para la velocdad angular como para la velocidad lineal, además se tienen condicionales que ayudarán al movimiento del robot, si alguna de las condicionales se cumple el controlador entrar en acción para tratar de corregir la trayectoria. Por último se publica la velocidad, los errores y la posición del robot.
+
+````python
 #!/usr/bin/env python
 import rospy
 import numpy as np
@@ -367,12 +390,14 @@ if __name__ == '__main__':
 
 https://youtube.com/shorts/GYwQgxYg7TQ?feature=share
 
+En este video se puede observar que el robot no se comportó de la manera deseada, esto como tal no fue causado por el programa, si no por un error en la conexión con la tarjeta, debido a esto ya no se pudieron hacer más pruebas porque no fue posible reanudar la comunicación entre la computadora externa y el puzzlebot. Se intentará dar solución a dicho inconveniente para que no se presente en ocasiones futuras.
 
 **<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
 
+https://youtu.be/XyWDXy_KEPI
 
-En estos videos se puede ver como el robot realiza la trayectoria tanto en físico y en el simulador.
+En este video se puede ver como el robot realiza la trayectoria cuadrada en el simulador, sin embargo vemos que el comportamiento está un poco alejado de lo solicitado, para esto se considera que posiblemente puede existir un inconveniente entre el tiempo de muestreo empleado o la sintonización de las variables utilizadas para el controlador PI.
 
 ## Conclusiones
 
-Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PID por su simplicidad y eficacia en este tipo de sistema, sin embargo, requirió ajustes en las constantes de cada acción del controlador para funcionar correctamente en esta aplicación. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final.
+Para la solución del reto se necesitó saber en todo momento la posición del robot, se implemento un controlador PI por su simplicidad y eficacia en este tipo de sistema, sin embargo, requirió ajustes en las constantes de cada acción del controlador para funcionar correctamente en esta aplicación. Con el generador de trayectorias nos dimos cuenta que se puede automatizar los procesos en el robot y que será de gran ayuda en el reto final. Si bien el robot no se comportó de la mejor manera se seguirá actualizando el código de manera externa para poder obtener un resultado satisfactorio y preciso.

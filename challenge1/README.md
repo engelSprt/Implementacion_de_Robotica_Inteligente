@@ -14,7 +14,6 @@
 <p align="center">Fredy Yahir Canseco Santos		A01735589</p>
 <p align="center">José Ángel Ramírez Ramírez		A01735529</p>
 <p align="center">Daniel Ruán Aguilar			A01731921</p>
-<p align="center">Fecha de entrega: 18 de abril del 2023</p>
 
 
 ## Resumen
@@ -28,6 +27,15 @@ En adición la ejecución del robot en físico se hará al mismo tiempo en el si
 ## Objetivos
 
 Lo que se busca es crear un nodo para conducir el robot simulado en una ruta cuadrada de una longitud de 2 m por lado. Al mismo tiempo se usa el mismo nodo para mover el robot real en un cuadrado de 2 m de lado utilizando un controlador de lazo abierto y se selecciona la velocidad para terminar el recorrido, finalmente se trazarán segmentos de distancia que el robot rescorrerá tanto en físico y en el simulador.
+
+**Trayectoria 1:**
+
+![image](https://user-images.githubusercontent.com/93226207/234476444-65daa0d9-1407-4499-a098-584d89ef6d62.png)
+
+**Trayectoria 2:**
+
+![image](https://user-images.githubusercontent.com/93226207/234476626-d605daf9-6277-4ada-93b1-cd6405b5ae4b.png)
+
 
 ## Introducción
 
@@ -43,7 +51,7 @@ La inclusión de un robot movil al trabajar con R.O.S. (Robot Operating System) 
 </p>
 
 ## Solución del problema
-Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: avanza.py y trayectoria2.py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
+Para la solución de este reto se cuentan con dos archivos codificados en lenguaje Python, llamados: cuadrado.py y trayectoria2.py Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
 ### cuadrado.py
 Este nodo controla al puzzlebot para que se mueva en un patrón de cuadrado de 2mts por 2mts. El código se ejecuta en un bucle continuo hasta que complete su trayectoria o el usuario lo detenga. Durante el bucle, el nodo utiliza información de velocidad de rueda proporcionada por dos suscriptores /wr y /wl, para calcular la distancia y el ángulo recorridos por el puzzlebot. Luego, el nodo utiliza esta información para determinar la dirección y la velocidad de movimiento del robot. Finalmente, el nodo publica los comandos de movimiento a través de un publicador de ROS al robot.

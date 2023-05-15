@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Load operation parameters from YAML file -->
+    <rosparam command="load" file="$(find mini_challenge_2)/config/parametros.yaml"/>
+
+    <!-- Launch path_generator.py -->
+    <node name="Path_generator" pkg="mini_challenge_2" type="path_generator.py"/>
+
+    <!-- Launch controller.py -->
+    <node name="Controller" pkg="mini_challenge_2" type="controller.py"/>
+
+</launch>
