@@ -74,8 +74,8 @@ class TrafficLightDetector:
     def __init__(self):
 
         #Se definen los rangos de color en HSV
-        self.lower_red = np.array([38, 86, 0])
-        self.upper_red = np.array([121, 255, 255])
+        self.lower_red = np.array([70, 192, 130])
+        self.upper_red = np.array([180, 255, 255])
 
         self.lower_yellow = np.array([20, 100, 100])
         self.upper_yellow = np.array([30, 255, 255])
@@ -114,7 +114,7 @@ class TrafficLightDetector:
         for contour in contoursRed:
             area_Red = cv2.contourArea(contour)
             #Si el area es suficientemente grande y el color esta dentro del rango se publica el mensaje
-            if area_Red >6000 and cv2.countNonZero(mask_red) > 100:
+            if area_Red >5000 and cv2.countNonZero(mask_red) > 1000:
                 self.traffic_light_pub.publish("Stop")
 
         #Se define la mascara para el rango de color del amarillo
@@ -128,7 +128,7 @@ class TrafficLightDetector:
         for contour in contoursYellow:
             area_yellow = cv2.contourArea(contour)
             #Si el area es suficientemente grande y el color esta dentro del rango se publica el mensaje
-            if area_yellow >6000 and cv2.countNonZero(mask_yellow) > 100:
+            if area_yellow >5000 and cv2.countNonZero(mask_yellow) > 1000:
                 self.traffic_light_pub.publish("Slow_down")
 
         #Se define la mascara para el rango de color del verde
@@ -142,7 +142,7 @@ class TrafficLightDetector:
         for contour in contoursGreen:
             area_green = cv2.contourArea(contour)
             #Si el area es suficientemente grande y el color esta dentro del rango se publica el mensaje
-            if area_green >6000 and cv2.countNonZero(mask_green) > 100:
+            if area_green >5000 and cv2.countNonZero(mask_green) > 1000:
                 self.traffic_light_pub.publish("Go")
 
         #se convierten las mascaras de tipo imagen de cv2 a mensajes para publicar el topico
