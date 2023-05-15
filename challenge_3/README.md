@@ -19,7 +19,7 @@
 ## Resumen
 Este reto es una continuación de los retos 1 y 2. Para este, los puntos más importantes a tomar en cuenta son el control en lazo cerrado y algoritmos de visión. 
 
-En primer lugar, para el controlador en lazo cerrado se usó un controlador PID debido a la adaptabilidad que tiene en el sistema que estamos controlando, además de la robustez que tiene para manejar perturbaciones sin que su rendimiento se vea tan afectado.
+En primer lugar, para el controlador en lazo cerrado se usó un controlador PI para la parte angular y un controlador P para la parte lineal, esto debido a la adaptabilidad que tiene en el sistema que estamos controlando, además de la robustez que tiene para manejar perturbaciones sin que su rendimiento se vea tan afectado.
 
 Por otro lado, para el sistema de visión, se definió un rango para cada uno de los colores, se usó un filtro "Gaussian Blur" con un kernel de 5x5 para filtrar el ruido de las imágenes, y para agregar robustez se usaron conceptos de morfología con el propósito de que hubiera una visión más detallada de cada color.
 
@@ -172,7 +172,7 @@ if __name__ == '__main__':
 
 
 ### path_generator.py
-Este código genera la trayectoria a seguir por el robot, esto se logra mediante mensajes customizados. Se comienza por cargar cada una de las librerías y los mensajes customizados correspondientes. Posteriormente se generan funciones de callback que nos serán útiles para conocer los valores de los errores, y con esto poder tomar decisiones sobre el tiempo de muestreo. Seguido de esto tenemos la creación de los publishers y suscribers correspondientes
+Este código genera la trayectoria a seguir por el robot, esto se logra mediante mensajes customizados al tener cada una de las coordenadas en "x" y en "y" por separado. Se comienza por cargar cada una de las librerías y los mensajes customizados correspondientes. Posteriormente se generan funciones de callback que nos serán útiles para conocer los valores de las velocidades que poseen cada una de las llantas. También se hace uso de la biblioteca "Pose2D", esto con el objetivo de conocer la ubicación del robot en todo momento, lo cual nos permitirá hacer un cálculo que nos indicar la posición siguiente que el robot deberá de tomar. Seguido de esto tenemos la creación de los publishers y suscribers correspondientes. Dentro de la función principal para correr el nodo de Ros, tenemos en el desarrollo del código un apartado en el cuál generamos nuestro tiempo de muestreo a partir de las diferencias de tiempo utilizando "Rospy.get_time()". Seguido de esto calculamos el error angular y lineal tmando como referencia la coordenada a la cual se quiere llegar. Y si el error en cierto momento es menor a 0.1 indicamos que el error se convierta en 0 para así pasar al siguiente punto. Este mismo error le servirá al controlador para ayudar al robot a detenerse cuando la distancia sea la requerida. Finalmente se publica la ubicación del robot y el error presente, tanto lineal como angular.
 
 
 `````python
