@@ -388,15 +388,14 @@ if __name__ == '__main__':
 
 **<p align="center"> Videos de demostración en el robot</p>**
 
-https://youtube.com/shorts/GYwQgxYg7TQ?feature=share
+https://drive.google.com/file/d/19pZrLs5qfI0KTE--0tvYzdW7VM33KknC/view?usp=sharing
 
-En este video se puede observar que el robot no se comportó de la manera deseada, esto como tal no fue causado por el programa, si no por un error en la conexión con la tarjeta, debido a esto ya no se pudieron hacer más pruebas porque no fue posible reanudar la comunicación entre la computadora externa y el puzzlebot. Se intentará dar solución a dicho inconveniente para que no se presente en ocasiones futuras.
+En este video se puede observar que el robot sigue la trayectoria con una respuesta rápida.
 
 **<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
 
 https://youtu.be/XyWDXy_KEPI
 
-En este video se puede ver como el robot realiza la trayectoria cuadrada en el simulador, sin embargo vemos que el comportamiento está un poco alejado de lo solicitado, para esto se considera que posiblemente puede existir un inconveniente entre el tiempo de muestreo empleado o la sintonización de las variables utilizadas para el controlador PI.
 
 ## Conclusiones
 
