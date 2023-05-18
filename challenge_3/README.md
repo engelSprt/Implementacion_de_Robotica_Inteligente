@@ -537,7 +537,11 @@ Este proceso se repitió varias veces, con pequeños ajustes en cada iteración.
 
 ## Resultados
 
-### Video demostrativo
+### Video demostrativo SIN visión de computadora para visualizar la trayectoria
+
+https://drive.google.com/file/d/19pZrLs5qfI0KTE--0tvYzdW7VM33KknC/view?usp=sharing
+
+### Video demostrativo CON visión de computadora y trayectoria
 
 [![Video](https://img.youtube.com/vi/pidW3WI3QMc/0.jpg)](https://www.youtube.com/watch?v=pidW3WI3QMc)
 
