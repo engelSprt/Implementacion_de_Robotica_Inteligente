@@ -543,7 +543,7 @@ https://drive.google.com/file/d/19pZrLs5qfI0KTE--0tvYzdW7VM33KknC/view?usp=shari
 
 ### Video demostrativo CON visión de computadora y trayectoria
 
-[![Video](https://img.youtube.com/vi/pidW3WI3QMc/0.jpg)](https://www.youtube.com/watch?v=pidW3WI3QMc)
+[![Video](https://img.youtube.com/vi/pidW3WI3QMc/0.jpg)](https://youtu.be/C1Bx9LFZlXY)
 
 
 ## Conclusiones
