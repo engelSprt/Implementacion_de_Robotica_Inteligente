@@ -49,3 +49,4 @@ Los automóviles autónomos hoy en día han cobrado mucha relevancia y aún hoy 
 
 ## Conclusiones
 
+Un problema que se presentó fue al momento de pasar nuestros códigos probados en nuestros ordenadores a la jetson, ya que la cámara del puzzlebot es de una menor calidad que las de las computadoras, por lo que no segmentaba de igual manera las líneas negras, entonces se tuvo que modificar e ir cambiando las variables dentro de la jetson para acoplarse a las nuevas condiciones de la cámara-raspberry pi.
