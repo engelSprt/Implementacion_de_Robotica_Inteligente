@@ -31,9 +31,9 @@ Para este mini-reto se espera que el puzzebot sea capaz y tenga la robustez nece
 
 Los automóviles autónomos hoy en día han cobrado mucha relevancia y aún hoy en día para muchas personas pareciera que estos funcionan con magia; sin embargo, detrás de estos automóviles existe un tema bastante complejo pero fundamental para que puedan ser autónomos. Es la visión computacional, la cual es un campo de estudio que se enfoca en enseñar a las computadoras a "ver" y comprender el contenido visual de imágenes o videos, permitiéndoles realizar tareas como reconocimiento de objetos, detección de patrones, seguimiento de movimientos y análisis de escenas. En el caso de los vehículos autónomos se tienen que tomar en cuenta distintos puntos, de manera que el sistema trabaje de la manera más eficiente. Algunos de los puntos más importantes para este reto son los siguientes:
 
-Detección de líneas y contornos en una imagen.
-Algoritmos implementados para el seguimiento de líneas y trayectorias.
-Robustez en sistemas de procesamiento de imágenes, etc.
+* Detección de líneas y contornos en una imagen.
+* Algoritmos implementados para el seguimiento de líneas y trayectorias.
+* Robustez en sistemas de procesamiento de imágenes, etc.
 
 ![mapa mental reto4](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/100887194/f4a8d9a2-09ab-49c0-9422-c32dca103cb1)
 
