@@ -17,7 +17,7 @@
 
 
 ## Resumen
-
+Preparándonos para el reto final, esta vez se requirió hacer un nodo adicional para detectar a través de la cámara del Puzzlebot la línea negra de una pista para seguir la trayectoria mediante el control del robot ajustando la velocidad angular y dejando la lineal constante. La pista fue construída por nosotros con materiales de papelería para crear una trayectoría personalizada. La lógica en diagrama a bloques de la programación fue de la siguiente manera:
  
 
 
@@ -38,12 +38,10 @@ Los automóviles autónomos hoy en día han cobrado mucha relevancia y aún hoy 
 ![mapa mental reto4](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/100887194/f4a8d9a2-09ab-49c0-9422-c32dca103cb1)
 
 
-
 ## Solución
 
 
 ## Resultados
-
 
 
 
