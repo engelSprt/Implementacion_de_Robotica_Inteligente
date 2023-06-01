@@ -19,7 +19,7 @@
 ## Resumen
 Preparándonos para el reto final, esta vez se requirió hacer un nodo adicional para detectar a través de la cámara del Puzzlebot la línea negra de una pista para seguir la trayectoria mediante el control del robot ajustando la velocidad angular y dejando la lineal constante. La pista fue construída por nosotros con materiales de papelería para crear una trayectoría personalizada. La lógica en diagrama a bloques de la programación fue de la siguiente manera:
  
-
+<p align="center">https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/blob/main/challenge_4/diagram.png</p>**
 
 ## Objetivos
 
