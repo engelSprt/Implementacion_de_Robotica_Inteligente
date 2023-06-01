@@ -392,9 +392,7 @@ https://drive.google.com/file/d/19pZrLs5qfI0KTE--0tvYzdW7VM33KknC/view?usp=shari
 
 En este video se puede observar que el robot sigue la trayectoria con una respuesta rápida.
 
-**<p align="center"> Videos de demostración del robot en el simulador Gazebo</p>**
 
-https://youtu.be/XyWDXy_KEPI
 
 
 ## Conclusiones
