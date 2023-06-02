@@ -522,14 +522,17 @@ En adición, para una mayor robustez se incorporó otro nodo de visión, donde e
 
 ## Resultados
 **Videos de ejecución en pista**  
+
 https://youtube.com/shorts/hFCaqIVo1SE?feature=share
 
 https://youtube.com/shorts/tg0sDvfeq4Y?feature=share
 
 **Video de explicación de código de visión computacional**
+
 https://youtu.be/jnjquMFUAJ8
 
 **Video de demostración de segundo programa de visión**
+
 https://youtu.be/xkm3niGPm3Y
 
 https://youtu.be/y_p1Pb6AsKM
