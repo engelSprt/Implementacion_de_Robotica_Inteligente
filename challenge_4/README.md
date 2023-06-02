@@ -158,7 +158,7 @@ if __name__ == '__main__':
 `````
 
 ### controlador_prueba.py
-El controlador utiliza el framework ROS para la comunicación con otros nodos y la suscripción a tópicos relevantes. Se suscribe a los tópicos "/traffic_light" y "/line_error" para recibir información sobre el estado del semáforo y el error de línea detectado, respectivamente.
+El controlador utiliza el framework ROS para la comunicación con otros nodos y la suscripción a tópicos relevantes. Se suscribe a los tópicos "/traffic_light" y "/line_error" para recibir información sobre el estado del semáforo y el error de línea detectado, respectivamente. El error de la línea no es más que el ángulo que se detectó con el programa de visión, dicho ángulo entrará como set_point al controlador y este generará al final una velocidad utilizando la instrucción de Twist con la velocidad controlada con ayuda del controlador PID.
 
 El controlador está diseñado como una clase llamada "controller", que encapsula todas las funcionalidades necesarias. Algunas de las variables clave utilizadas incluyen el tiempo de muestreo, las dimensiones físicas del robot, el estado actual, las ganancias del controlador PID y las velocidades lineal y angular.
 
