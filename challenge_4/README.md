@@ -158,6 +158,7 @@ if __name__ == '__main__':
 
 ### follow_line2.py
 En adición, para una mayor robustez se incorporó otro nodo de visión, donde esta vez mide el error del ángulo de dos puntos en el frame, dicho error se manda de igual manera como un tópico /err_angle para controlar la velocidad angular, el punto inferior del frame indica la coordenada de donde se encuentra el robot y el punto superior indica la coordenada destino a donde se va a ir moviendo el robot. El código comentado queda de la siguiente manera:
+![image](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/93226207/e81b8883-ec37-4233-8c50-fc804eafbec7)
 
 
 ## Resultados
