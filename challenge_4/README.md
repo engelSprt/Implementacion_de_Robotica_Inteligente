@@ -43,6 +43,8 @@ Para la solución de este reto se cuentan con # archivos codificados en lenguaje
 
 ### follow_line.py
 
+## follow_line2.py
+En adición, para una mayor robustez se incorporó un nodo de visión donde esta vez mide el error del ángulo de dos puntos en el frame, dicho error se manda de igual manera como un tópico /err_angle, el punto inferior del frame indica la u
 
 
 ## Resultados
