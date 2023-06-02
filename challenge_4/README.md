@@ -160,14 +160,23 @@ if __name__ == '__main__':
 En adición, para una mayor robustez se incorporó otro nodo de visión, donde esta vez mide el error del ángulo de dos puntos en el frame, dicho error se manda de igual manera como un tópico /err_angle para controlar la velocidad angular, el punto inferior del frame indica la coordenada de donde se encuentra el robot y el punto superior indica la coordenada destino a donde se va a ir moviendo el robot. El código comentado queda de la siguiente manera:
 ![image](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/93226207/e699fffc-9db7-4997-8066-a58921681bdd)
 ![image](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/93226207/2e8de582-2b04-40d7-9d2c-eb297906ae22)
-
-
+![image](https://github.com/engelSprt/Implementacion_de_Robotica_Inteligente/assets/93226207/9855466f-3654-4755-b7c3-68a9e509f0e2)
 
 
 ## Resultados
+**Videos de ejecución en pista**  
+https://youtube.com/shorts/hFCaqIVo1SE?feature=share
 
+https://youtube.com/shorts/tg0sDvfeq4Y?feature=share
 
+**Video de explicación de código de visión computacional**
+https://youtu.be/jnjquMFUAJ8
 
+**Video de demostración de segundo programa de visión**
+https://youtu.be/xkm3niGPm3Y
+
+https://youtu.be/y_p1Pb6AsKM
+ 
 ## Conclusiones
 
 Un problema que se presentó fue al momento de pasar nuestros códigos probados en nuestros ordenadores a la jetson, ya que la cámara del puzzlebot es de una menor calidad que las de las computadoras, por lo que no segmentaba de igual manera las líneas negras, entonces se tuvo que modificar e ir cambiando las variables dentro de la jetson para acoplarse a las nuevas condiciones de la cámara-raspberry pi. En adición a esto, hubo problemas con la detección de la línea dependiendo de la iluminación que hubiera en el espacio de experimentación, entre más luz había, menor era el umbral que se debía aplicar y con menos luz, debía declararse uno mayor, es por esto que consideramos como una posible mejora al código la regularización automática de este umbral dependiendo de la luz en el entorno.
