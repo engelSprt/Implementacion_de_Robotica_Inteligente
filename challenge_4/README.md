@@ -42,7 +42,7 @@ Los automóviles autónomos hoy en día han cobrado mucha relevancia y aún hoy 
 Para la solución de este reto se cuentan con 3 archivos codificados en lenguaje Python, llamados: controller.py, follow_line.py, follow_line2.py. Se comenzará por describir la funcionalidad de cada uno en el siguiente apartado:
 
 ### follow_line.py
-En este código se implementa conceptos de visión por computadora, donde se 
+En este código se implementa conceptos de visión por computadora, donde se umbraliza lo que capta la cámara para detectar áreas negras en el frame recortado, encuentra el contorno más grande y calcula su centroide. Luego, muestra los contornos, los puntos marcados y el error en el frame recortado y en la imagen binaria, y publica los resultados en varios tópicos. El código documentado queda de la siguiente manera:
 
 `````python 
 #!/usr/bin/env python
