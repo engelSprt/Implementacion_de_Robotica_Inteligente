@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Load operation parameters from YAML file -->
+    <rosparam command="load" file="$(find retosemaforo)/config/parametros.yaml"/>
+
+    <!-- Launch semaphore.py -->
+    <node name="traffic_light_detector" pkg="retosemaforo" type="semaphore.py"/>
+    
+    <!-- Launch path_generator.py -->
+    <node name="Path_generator" pkg="retosemaforo" type="path_generator.py"/>
+    <!-- Launch controller.py -->
+    <node name="Controller" pkg="retosemaforo" type="controller_prueba.py"/>
+
+</launch>

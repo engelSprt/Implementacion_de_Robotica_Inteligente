@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<launch>  
+
+        <node name="image_processing_node" pkg="retosemaforo" type="prueba_follow5.py" />
+        <node name="controller" pkg="retosemaforo" type="controlador_prueba.py"  />
+
+</launch>
