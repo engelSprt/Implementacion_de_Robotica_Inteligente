@@ -1,4 +1,4 @@
-Los archivos que se incluyen en esta carpeta son los siguientes:
+Los archivos que se incluyen en esta carpeta son los siguientes códigos documentados:
 
 - Controller_node.py: Solución al controlador.
 - Line_follower_node.py: Solución al seguidor de línea.
